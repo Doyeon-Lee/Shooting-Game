@@ -1,12 +1,27 @@
-#include <iostream>
+#include "main.h"
+#include "game.h"
+#include "util.h"
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+//char **escape_map;
 
 int main() {
-	while(1){
-		
-		
-	}
+	init();
+	//resetMap();	
 	
+	while(1){
+		titleDraw();
+		int menuCode = menuDraw();
+		if(menuCode == 0){ //게임 시작
+			gameStart();
+		} else if(menuCode == 1){
+			help(); // help
+		} else if(menuCode == 2){
+			highScore(); // highscore
+		}else if(menuCode == 3){
+			return 0; //exit
+		}
+		system("cls");
+	}
 	return 0;
 }
+
