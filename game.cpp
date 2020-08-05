@@ -2,12 +2,14 @@
 #include "game.h"
 #include "util.h"
 #include "score.h"
+#include "enemy.h"
 
 // [-] player
 // <-> enemy 
+// <<<->>> boss
 
 void gameStart(){
-	//enemy();
+	enemy();
 	//myplane();
 	score();
 }
