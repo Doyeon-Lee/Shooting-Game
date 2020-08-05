@@ -16,3 +16,4 @@ int keyControl();
 void titleDraw();
 int menuDraw();
 void infoDraw();
+void help();

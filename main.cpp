@@ -8,10 +8,10 @@ int main() {
 	while(1){
 		titleDraw();
 		int menuCode = menuDraw();
-		if(menuCode == 0){ //ê²Œìž„ ì‹œìž‘
+		if(menuCode == 0){ //°ÔÀÓ ½ÃÀÛ
 			//gameStart();
 		} else if(menuCode == 1){
-			//help(); // help
+			help(); // help
 		} else if(menuCode == 2){
 			//highScore(); // highscore
 		}else if(menuCode == 3){
@@ -21,3 +21,4 @@ int main() {
 	}
 	return 0;
 }
+
