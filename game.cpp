@@ -21,7 +21,7 @@ int keyControl() {
 }
 
 void titleDraw() {
-	cout << "\n\n\n\n";
+	cout << "\n\n\n\n"
 	cout << "        │││ │  Λ  │││ │   Λ";
 	cout << "        ├┼┤ │ / \ ├┼┤ ├─ / \";
 	cout << "        │││ │ ┬─┬ │││ │  ┬─┬";
