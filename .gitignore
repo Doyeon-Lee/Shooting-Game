@@ -4,4 +4,5 @@ Project2_shooting.layout
 game.o
 main.o
 util.o
+score.o
 Project2_shooting.dev

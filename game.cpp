@@ -1,6 +1,16 @@
 #include "main.h"
 #include "game.h"
 #include "util.h"
+#include "score.h"
+
+// [-] player
+// <-> enemy 
+
+void gameStart(){
+	//enemy();
+	//myplane();
+	score();
+}
 
 void printHelpPage(int &cur_page, int &total_page){
 	cout << "\n\n\t\t\t" << cur_page << "/" << total_page << "\n\n\n";
