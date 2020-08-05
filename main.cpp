@@ -9,7 +9,7 @@ int main() {
 		titleDraw();
 		int menuCode = menuDraw();
 		if(menuCode == 0){ //게임 시작
-			//gameStart();
+			gameStart();
 		} else if(menuCode == 1){
 			help(); // help
 		} else if(menuCode == 2){
