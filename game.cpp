@@ -1,4 +1,6 @@
+#include "main.h"
 #include "game.h"
+#include "util.h"
 
 int keyControl() {
 	char temp = getch();
@@ -67,5 +69,6 @@ int menuDraw(){
 			}
 		}
 	}
-
 }
+
+
