@@ -2,16 +2,16 @@
 //#include "game.h"
 #include "util.h"
 
-//½ÃÀÛ È­¸é ¼³Á¤ ¹× ±âº» ÇÔ¼öµé 
+//ì‹œì‘ í™”ë©´ ì„¤ì • ë° ê¸°ë³¸ í•¨ìˆ˜ë“¤ 
 void init(){
-	system("mode con: cols=62 lines=20 | title Å»Ãâ °ÔÀÓ");
+	system("mode con: cols=62 lines=20 | title íƒˆì¶œ ê²Œì„");
 
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO ConsoleCursor;
-	ConsoleCursor.bVisible = 0; //false ¶Ç´Â 0: ¼û±â±â 
+	ConsoleCursor.bVisible = 0; //false ë˜ëŠ” 0: ìˆ¨ê¸°ê¸° 
 	ConsoleCursor.dwSize = 1;
 	SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
-	//·çÇÁ Àç»ı 
+	//ë£¨í”„ ì¬ìƒ 
 	//PlaySoundA (TEXT("background_music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); 
 }
 
@@ -19,19 +19,18 @@ void init(){
 void gotoxy(int x, int y){
 	if(x < 0 || y < 0) cerr << "Out of Screen!";
 	
-	HANDLE consolehandle = GetStdHandle(STD_OUTPUT_HANDLE); //ÄÜ¼Ö ÇÚµé °¡Á®¿À±â
+	HANDLE consolehandle = GetStdHandle(STD_OUTPUT_HANDLE); //ì½˜ì†” í•¸ë“¤ ê°€ì ¸ì˜¤ê¸°
 	COORD pos;
 	pos.X = x;
 	pos.Y = y;
 	SetConsoleCursorPosition(consolehandle,pos);
 }
 
-//±ÛÀÚ, ¹è°æ»ö 
+//ê¸€ì, ë°°ê²½ìƒ‰ 
 void setColor(int forground, int background){
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	int code = forground + background * 16;
 	SetConsoleTextAttribute(consoleHandle, code);
 }
-
 
 

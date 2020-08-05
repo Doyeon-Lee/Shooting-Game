@@ -8,7 +8,7 @@ int main() {
 	while(1){
 		titleDraw();
 		int menuCode = menuDraw();
-		if(menuCode == 0){ //°ÔÀÓ ½ÃÀÛ
+		if(menuCode == 0){ //ê²Œìž„ ì‹œìž‘
 			//gameStart();
 		} else if(menuCode == 1){
 			//help(); // help
@@ -21,4 +21,3 @@ int main() {
 	}
 	return 0;
 }
-
