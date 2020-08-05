@@ -2,16 +2,13 @@
 #include "game.h"
 #include "util.h"
 
-//char **escape_map;
-
 int main() {
-	init();
-	//resetMap();	
-	
+	init();	
+
 	while(1){
 		titleDraw();
 		int menuCode = menuDraw();
-		if(menuCode == 0){ //ê²Œìž„ ì‹œìž‘
+		if(menuCode == 0){ //°ÔÀÓ ½ÃÀÛ
 			//gameStart();
 		} else if(menuCode == 1){
 			//help(); // help

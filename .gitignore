@@ -1,0 +1,7 @@
+Makefile.win
+Project2_shooting.exe
+Project2_shooting.layout
+game.o
+main.o
+util.o
+Project2_shooting.dev
