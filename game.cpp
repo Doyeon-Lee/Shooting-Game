@@ -9,9 +9,13 @@
 // <<<->>> boss
 
 void gameStart(){
+<<<<<<< HEAD
 	enemy();
+=======
+>>>>>>> 99a2373c70d593bbeadbdbbba2310e9b632953f4
 	//myplane();
-	score();
+	//score();
+	enemy();
 }
 
 void printHelpPage(int &cur_page, int &total_page){
@@ -107,8 +111,7 @@ int menuDraw(){
 					cout << ">";
 				}
 				break;
-			}
-			
+			}		
 			case DOWN:{
 					if(y<15){
 							gotoxy(x-2,y);
@@ -117,12 +120,10 @@ int menuDraw(){
 							cout << ">";
 					}
 					break;
-			}
-
+		}
 			case SUBMIT:{
 				return y-12; // gamestart:0, help:1, highscore:2, exit:3
 			}
 		}
 	}
 }
-
