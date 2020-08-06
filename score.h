@@ -13,7 +13,7 @@ class UNIT{
 		int life;
 		int color;
 };
-
+/*
 class Player : public UNIT{
 public:
 	Player(int a, int b){
@@ -37,45 +37,6 @@ private:
 		}
 	}
 };
-
-class Enemy : public UNIT{
-public:
-	bool exist;
-	string view;
-	clock_t create_time;
-	void move(int a, int b){Move(a, b);}
-	
-	Enemy(){
-		exist = false;
-	}
-	Enemy(clock_t t){
-		//·£´ýÇÏ°Ô ÁÂÇ¥ »ý¼º
-		x = rand() % 60;
-		y = 0;
-		exist = true;
-		view = "<->";
-		create_time = t;
-	}
-private:
-	void Move(int _x, int _y){
-		if((clock() - create_time)/CLOCKS_PER_SEC > 60){
-			create_time = clock();
-			return;
-		}
-		
-		if(x+_x >= 0 && x+_x < 62 && y+_y >= 0 && y+_y < 20){
-			gotoxy(x, y);
-			cout << "     ";
-			gotoxy(x+_x, y+_y);
-			setColor(yellow, black);
-			cout << view;
-					
-			x += _x;
-			y += _y;
-		}
-	}	
-};
-
+*/
 void score();
 //void myplane();
-void enemy();
