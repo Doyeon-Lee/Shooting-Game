@@ -21,7 +21,7 @@ void* move_enemy(void* arguments) {
 	int j = args->j;
 	int e = args->ene;
 	clock_t start;
-	while(i < 60 && j < 17 && Enemy[e].exist == true) {
+	while(i < 60 && j < 18 && Enemy[e].exist == true) {
 		Enemy[e].x = i; Enemy[e].y = j;
 		gotoxy(i, j);
 		cout << Enemy[e].view;
@@ -32,7 +32,7 @@ void* move_enemy(void* arguments) {
 		j++;
 		start = clock();
 	}
-	if(Enemy[e].y == 17 || Enemy[e].exist == false)
+	if(Enemy[e].y == 18 || Enemy[e].exist == false)
 		q.push(e);
 }
 
