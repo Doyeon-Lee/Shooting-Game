@@ -30,7 +30,7 @@ void enemy() {
 	//62, 20
 	while(1) {
 		i = rand() % 60; j = 0;
-		move(i, j, ene);
+		move_enemy(i, j, ene);
 		ene++; ene_num++;
 		if(Enemy[ene].y == 21) ene_num--;
 		if(ene > 9) ene = 0;

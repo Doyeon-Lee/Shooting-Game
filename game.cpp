@@ -10,7 +10,7 @@
 // <<<->>> boss
 
 void gameStart(){
-	//score();
+	score();
 	enemy();
 	myplane();
 }
