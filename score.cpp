@@ -51,34 +51,39 @@ void myplane(){
 		}
 	}
 }
-
+*/
 void enemy(){
 	system("cls");
 	srand(time(0));
 	
 	int MAXENEMY = 10;
-	Enemy *e[MAXENEMY];
+	Enemy e[MAXENEMY];
 	int cur_enemy = 0;
 
 	queue<int> q;
 	for(int i = 0;i < 10;i++) q.push(i);
-
-	for(int j = 0;j < 5;j++){
-		cout << cur_enemy;
+	
+	
+	for(int i = 0;i < 13;i++){		
 		if(cur_enemy < 10){
-			e[q.front()] = new Enemy();
+			clock_t t = clock();
+			Enemy tmp(t);
+			e[q.front()] = tmp;
 			q.pop();
 			cur_enemy++;
 		}
 		
-		for(int i = 0;i < 10;i++){
-			if(e[i]->exist) e[i]->move(0, 1);
+		for(int j = 0;j < 10;j++){
+			if(e[j].exist == true){
+				e[j].move(0,1);
+				Sleep(500);
+			}	
 		}
+		
 	}
-
 	setColor(white, black);
 }
-*/
+
 
 
 

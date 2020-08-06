@@ -1,6 +1,11 @@
 #include "main.h"
 
-/*
+#ifndef __TIME_H__
+#define __TIME_H__
+
+#include <time.h>
+#endif
+
 class UNIT{
 	public:
 		int x;
@@ -15,8 +20,8 @@ public:
 		x = a;
 		y = b;
 	}
-		
 	void move(int a, int b) {Move(a, b);}
+	
 private:
 	Move(int _x, int _y){
 		//62,20
@@ -37,16 +42,27 @@ class Enemy : public UNIT{
 public:
 	bool exist;
 	string view;
+	clock_t create_time;
 	void move(int a, int b){Move(a, b);}
+	
 	Enemy(){
+		exist = false;
+	}
+	Enemy(clock_t t){
 		//·£´ýÇÏ°Ô ÁÂÇ¥ »ý¼º
 		x = rand() % 60;
 		y = 0;
 		exist = true;
 		view = "<->";
+		create_time = t;
 	}
 private:
-	Move(int _x, int _y){
+	void Move(int _x, int _y){
+		if((clock() - create_time)/CLOCKS_PER_SEC > 60){
+			create_time = clock();
+			return;
+		}
+		
 		if(x+_x >= 0 && x+_x < 62 && y+_y >= 0 && y+_y < 20){
 			gotoxy(x, y);
 			cout << "     ";
@@ -59,8 +75,7 @@ private:
 		}
 	}	
 };
-*/
 
 void score();
 //void myplane();
-//void enemy();
+void enemy();

@@ -10,6 +10,8 @@
 // <<<->>> boss
 
 void gameStart(){
+	enemy();
+	/*
 	system("cls");
 	score();
 	
@@ -48,6 +50,7 @@ void gameStart(){
         	}
         }
     }
+    */
 }
 
 void printHelpPage(int &cur_page, int &total_page){

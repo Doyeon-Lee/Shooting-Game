@@ -1,5 +1,5 @@
 #include "enemy.h"
-
+/*
 class Enemy {
 public:
 	bool exist;
@@ -37,3 +37,4 @@ void enemy() {
 	}
 	setColor(white, black);
 }
+*/
