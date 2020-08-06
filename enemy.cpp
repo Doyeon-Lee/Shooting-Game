@@ -8,7 +8,7 @@ public:
 	void move(int, int);
 }Enemy[MAXENEMY];
 
-void move(int i, int j, int e) {
+void move_enemy(int i, int j, int e) {
 	Enemy[e].x = i; Enemy[e].y = j;
 	while(i < 60 && j < 20) {
 		gotoxy(i, j);
@@ -29,7 +29,6 @@ void enemy() {
 	ene_num = 0; ene = 0;
 	//62, 20
 	while(1) {
-		thread t(move);
 		i = rand() % 60; j = 0;
 		move(i, j, ene);
 		ene++; ene_num++;

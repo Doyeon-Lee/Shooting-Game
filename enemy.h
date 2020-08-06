@@ -1,6 +1,5 @@
 #include <string>
 #include <ctime>
-#include <thread>
 #include "main.h"
 #include "util.h"
 #include "game.h"
