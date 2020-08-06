@@ -1,11 +1,7 @@
 #include "enemy.h"
-<<<<<<< HEAD
-/*
-=======
 
 queue<int> q;
 
->>>>>>> 57ceec29b1aaa4c8687043b8cef8f8be2aed6fcb
 class Enemy {
 public:
 	bool exist = true;
@@ -70,4 +66,3 @@ void enemy() {
 	}
 	setColor(white, black);
 }
-*/

@@ -10,47 +10,10 @@
 // <<<->>> boss
 
 void gameStart(){
-	enemy();
-	/*
 	system("cls");
 	score();
-	
-	Myplane me(30,17);
-    gotoxy(30,17);
-    setColor(yellow,black);
-    cout << "[-]";
-    int play = 1;
-    int k;
-    
-	while(play){
-		enemy();
-		
-		if(k = keyControl()){
-	        switch(k){
-	            case UP:{
-	                move(&me.x, &me.y, 0, -1);
-	                break;
-	            }
-	            case DOWN:{
-	                move(&me.x, &me.y, 0, 1);
-	                break;
-	            }
-	            case LEFT:{
-	                move(&me.x, &me.y, -1, 0);
-	                break;
-	            }
-	            case RIGHT:{
-	                move(&me.x, &me.y, 1, 0);
-	                break;
-	            }
-	            case SUBMIT:{
-	                setColor(white, black);
-	                play = 0;
-	            }
-        	}
-        }
-    }
-    */
+	enemy();
+	myplane();
 }
 
 void printHelpPage(int &cur_page, int &total_page){

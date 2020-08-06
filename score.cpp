@@ -51,7 +51,7 @@ void myplane(){
 		}
 	}
 }
-*/
+
 void enemy(){
 	system("cls");
 	srand(time(0));
@@ -83,7 +83,7 @@ void enemy(){
 	}
 	setColor(white, black);
 }
-
+*/
 
 
 
