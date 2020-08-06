@@ -22,11 +22,11 @@ void* move_enemy(void* arguments) {
 	int j = args->j;
 	int e = args->ene;
 	clock_t start;
-	setColor(red,black);
 	
 	while(i < 60 && j < 18 && Enemy[e].exist == true) {
 		Enemy[e].x = i; Enemy[e].y = j;
 		gotoxy(i, j);
+		setColor(red,black);
 		cout << Enemy[e].view;
 		sleep(1);		
 		gotoxy(i, j);
