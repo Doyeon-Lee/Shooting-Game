@@ -10,11 +10,6 @@
 // <<<->>> boss
 
 void gameStart(){
-<<<<<<< HEAD
-	enemy();
-=======
->>>>>>> 99a2373c70d593bbeadbdbbba2310e9b632953f4
-	//myplane();
 	//score();
 	enemy();
 	myplane();
