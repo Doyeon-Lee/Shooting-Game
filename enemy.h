@@ -1,6 +1,7 @@
 #include <string>
 #include <ctime>
 #include <pthread.h>
+#include <unistd.h>
 #include <time.h>
 #include <queue>
 #include "main.h"
@@ -13,5 +14,5 @@
 using namespace std;
 
 void enemy();
-void move();
+void* move_enemy(void*);
 

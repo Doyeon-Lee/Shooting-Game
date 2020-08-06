@@ -1,4 +1,5 @@
 #include "enemy.h"
+#include "myplane.h"
 
 queue<int> q;
 
@@ -21,12 +22,13 @@ void* move_enemy(void* arguments) {
 	int j = args->j;
 	int e = args->ene;
 	clock_t start;
+	setColor(red,black);
+	
 	while(i < 60 && j < 18 && Enemy[e].exist == true) {
 		Enemy[e].x = i; Enemy[e].y = j;
 		gotoxy(i, j);
 		cout << Enemy[e].view;
-		start = clock();
-		Sleep(500);		
+		sleep(1);		
 		gotoxy(i, j);
 		cout << "   ";
 		j++;
@@ -41,8 +43,8 @@ void enemy() {
 	bool bfound;
 	arg_struct args;
 	pthread_t thread_t;
+	Myplane me(30,17);
 	clock_t start = clock();
-	setColor(red, black);
 	srand(time(0));
 	
 	ene = 0;
@@ -52,6 +54,29 @@ void enemy() {
 	}
 	//62, 20
 	while(!q.empty()) {
+		int k = keyControl();
+        switch(k){
+            case UP:{
+                move(&me.x, &me.y, 0, -1);
+                break;
+            }
+            case DOWN:{
+                move(&me.x, &me.y, 0, 1);
+                break;
+            }
+            case LEFT:{
+                move(&me.x, &me.y, -1, 0);
+                break;
+            }
+            case RIGHT:{
+                move(&me.x, &me.y, 1, 0);
+                break;
+            }
+            case SUBMIT:{
+                setColor(white, black);
+
+            }
+        }
 		args.i = rand() % 60; args.j = 0;
 		if((clock()-start)/CLOCKS_PER_SEC > 2) {
 			args.ene = q.front();

@@ -12,8 +12,8 @@
 void gameStart(){
 	system("cls");
 	score();
-	enemy();
 	myplane();
+	enemy();
 }
 
 void printHelpPage(int &cur_page, int &total_page){
