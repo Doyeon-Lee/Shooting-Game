@@ -28,13 +28,13 @@ void* move_enemy(void* arguments) {
 		gotoxy(i, j);
 		setColor(red,black);
 		cout << Enemy[e].view;
-		sleep(1);		
+		sleep(1);
 		gotoxy(i, j);
 		cout << "   ";
 		j++;
 		start = clock();
 	}
-	if(Enemy[e].y == 18 || Enemy[e].exist == false)
+	if(Enemy[e].y == 17 || Enemy[e].exist == false)
 		q.push(e);
 }
 
@@ -54,31 +54,33 @@ void enemy() {
 	}
 	//62, 20
 	while(!q.empty()) {
-		int k = keyControl();
-        switch(k){
-            case UP:{
-                move(&me.x, &me.y, 0, -1);
-                break;
-            }
-            case DOWN:{
-                move(&me.x, &me.y, 0, 1);
-                break;
-            }
-            case LEFT:{
-                move(&me.x, &me.y, -1, 0);
-                break;
-            }
-            case RIGHT:{
-                move(&me.x, &me.y, 1, 0);
-                break;
-            }
-            case SUBMIT:{
-                setColor(white, black);
-
-            }
+		if(keyControl()) {	//move my character
+			int k = keyControl();
+	        switch(k){
+	            case UP:{
+	                move(&me.x, &me.y, 0, -1);
+	                break;
+	            }
+	            case DOWN:{
+	                move(&me.x, &me.y, 0, 1);
+	                break;
+	            }
+	            case LEFT:{
+	                move(&me.x, &me.y, -1, 0);
+	                break;
+	            }
+	            case RIGHT:{
+	                move(&me.x, &me.y, 1, 0);
+	                break;
+	            }
+	            case SUBMIT:{
+	                setColor(white, black);
+	
+	            }
+	        }
         }
 		args.i = rand() % 60; args.j = 0;
-		if((clock()-start)/CLOCKS_PER_SEC > 2) {
+		if((clock()-start)/CLOCKS_PER_SEC > 2) {	//make enemies
 			args.ene = q.front();
 			q.pop();
 			Enemy[ene].exist == true;

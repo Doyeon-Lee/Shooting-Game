@@ -15,7 +15,7 @@ int main() {
 		} else if(menuCode == 2){
 			//highScore(); // highscore
 		}else if(menuCode == 3){
-			return 0; //exit
+			return 0;//exit
 		}
 		system("cls");
 	}
