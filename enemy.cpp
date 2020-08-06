@@ -23,7 +23,7 @@ void* move_enemy(void* ene) {
 		Enemy[e].y++;
 	}
 	
-	if(Enemy[e].y == 17 || Enemy[e].exist == false)
+	if(Enemy[e].y == 18 || Enemy[e].exist == false)
 		q.push(e);
 }
 
@@ -35,7 +35,7 @@ void enemy() {
 	srand(time(0));
 	
 	ene = 0;
-	while(ene < 11) {
+	while(ene < 10) {
 		q.push(ene);
 		ene++;
 	}
