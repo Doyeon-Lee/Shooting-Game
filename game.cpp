@@ -3,6 +3,7 @@
 #include "util.h"
 #include "score.h"
 #include "enemy.h"
+#include "myplane.h"
 
 // [-] player
 // <-> enemy 
@@ -16,6 +17,7 @@ void gameStart(){
 	//myplane();
 	//score();
 	enemy();
+	myplane();
 }
 
 void printHelpPage(int &cur_page, int &total_page){
