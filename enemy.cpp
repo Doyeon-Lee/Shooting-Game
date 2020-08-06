@@ -10,38 +10,25 @@ public:
 	string view = "<->";
 }Enemy[MAXENEMY];
 
-struct arg_struct {
-	int i;
-	int j;
-	int ene;
-};
-
-void* move_enemy(void* arguments) {
-	arg_struct *args = (arg_struct *)arguments;
-	int i = args->i;
-	int j = args->j;
-	int e = args->ene;
-	clock_t start;
+void* move_enemy(void* ene) {
+	int e = *(int *)ene;
 	
-	while(i < 60 && j < 18 && Enemy[e].exist == true) {
-		Enemy[e].x = i; Enemy[e].y = j;
-		gotoxy(i, j);
+	while(Enemy[e].x < 60 && Enemy[e].y < 18 && Enemy[e].exist == true) {
+		gotoxy(Enemy[e].x, Enemy[e].y);
 		setColor(red,black);
 		cout << Enemy[e].view;
 		sleep(1);
-		gotoxy(i, j);
+		gotoxy(Enemy[e].x, Enemy[e].y);
 		cout << "   ";
-		j++;
-		start = clock();
+		Enemy[e].y++;
 	}
+	
 	if(Enemy[e].y == 17 || Enemy[e].exist == false)
 		q.push(e);
 }
 
 void enemy() {
-	int i, j, ene;
-	bool bfound;
-	arg_struct args;
+	int i, j, ene, status;
 	pthread_t thread_t;
 	Myplane me(30,17);
 	clock_t start = clock();
@@ -54,7 +41,7 @@ void enemy() {
 	}
 	//62, 20
 	while(!q.empty()) {
-		if(keyControl()) {	//move my character
+		if(kbhit()) {	//move my character
 			int k = keyControl();
 	        switch(k){
 	            case UP:{
@@ -79,17 +66,19 @@ void enemy() {
 	            }
 	        }
         }
-		args.i = rand() % 60; args.j = 0;
+
 		if((clock()-start)/CLOCKS_PER_SEC > 2) {	//make enemies
-			args.ene = q.front();
-			q.pop();
-			Enemy[ene].exist == true;
-			if(pthread_create(&thread_t, NULL, move_enemy,(void*)&args)<0) {
+			ene = q.front(); q.pop();
+			Enemy[ene].x = rand() % 60;
+			Enemy[ene].y = 0;
+			Enemy[ene].exist = true;
+			if(pthread_create(&thread_t, NULL, move_enemy,(void*)&ene)<0) {
 				perror("thread create error:");
         		exit(0);
 			}
 			start = clock();
 		}
 	}
+	pthread_join(thread_t, (void **)&status);
 	setColor(white, black);
 }
