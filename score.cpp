@@ -3,10 +3,7 @@
 #include "game.h"
 #include "score.h"
 
-void score(){
-	system("cls");
-	cout << "\n\n\n\t\t\tgame start screen\n\n";
-	
+void score(){	
 	int score = 0;
 	int heart = 3;
 	int skill = 3;
@@ -16,7 +13,6 @@ void score(){
 		cout << "=";
 	gotoxy(0, 19);
 	cout << "생명: " << heart << "\t\t현재 스코어: " << score << "\t\t필살기: " << skill;
-	Sleep(3000);
 }
 	
 //enemy, myplane 구현 practice

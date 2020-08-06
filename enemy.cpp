@@ -21,7 +21,7 @@ void move_enemy(int i, int j, int e) {
 }
 
 void enemy() {
-	system("cls");
+	//system("cls");
 	int i, j, ene, ene_num;
 	bool bfound;
 	srand(time(0));

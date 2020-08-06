@@ -21,7 +21,7 @@ void move(int *x, int *y, int m, int n){
 }
 
 void myplane(){
-    system("cls");
+    //system("cls");
     Myplane me(30,19);
     gotoxy(30,19);
     setColor(yellow,black);
