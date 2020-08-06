@@ -9,7 +9,7 @@ Myplane::Myplane(int a, int b){
 }
 
 void move(int *x, int *y, int m, int n){
-    if((*x+m) >= 0 && (*x+m) < 62 && (*y+n) >= 0 && (*y+n) < 20){
+    if((*x+m) >= 0 && (*x+m) < 59 && (*y+n) >= 0 && (*y+n) < 18){
         gotoxy(*x,*y);
         cout << "   ";
         setColor(yellow, black);
@@ -21,7 +21,7 @@ void move(int *x, int *y, int m, int n){
 }
 
 void myplane(){
-    system("cls");
+    //system("cls");
     Myplane me(30,19);
     gotoxy(30,19);
     setColor(yellow,black);
