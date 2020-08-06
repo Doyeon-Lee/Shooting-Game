@@ -1,5 +1,8 @@
 #include <string>
 #include <ctime>
+#include <pthread.h>
+#include <time.h>
+#include <queue>
 #include "main.h"
 #include "util.h"
 #include "game.h"

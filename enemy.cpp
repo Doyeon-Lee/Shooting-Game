@@ -1,39 +1,68 @@
 #include "enemy.h"
 
+queue<int> q;
+
 class Enemy {
 public:
-	bool exist;
+	bool exist = true;
 	int x, y;
 	string view = "<->";
-	void move(int, int);
 }Enemy[MAXENEMY];
 
-void move_enemy(int i, int j, int e) {
-	Enemy[e].x = i; Enemy[e].y = j;
-	while(i < 60 && j < 20) {
+struct arg_struct {
+	int i;
+	int j;
+	int ene;
+};
+
+void* move_enemy(void* arguments) {
+	arg_struct *args = (arg_struct *)arguments;
+	int i = args->i;
+	int j = args->j;
+	int e = args->ene;
+	clock_t start;
+	while(i < 60 && j < 17 && Enemy[e].exist == true) {
+		Enemy[e].x = i; Enemy[e].y = j;
 		gotoxy(i, j);
 		cout << Enemy[e].view;
-		Sleep(500);
+		start = clock();
+		Sleep(500);		
 		gotoxy(i, j);
 		cout << "   ";
 		j++;
+		start = clock();
 	}
+	if(Enemy[e].y == 17 || Enemy[e].exist == false)
+		q.push(e);
 }
 
 void enemy() {
-	system("cls");
-	int i, j, ene, ene_num;
+	int i, j, ene;
 	bool bfound;
-	srand(time(0));
+	arg_struct args;
+	pthread_t thread_t;
+	clock_t start = clock();
 	setColor(red, black);
-	ene_num = 0; ene = 0;
+	srand(time(0));
+	
+	ene = 0;
+	while(ene < 11) {
+		q.push(ene);
+		ene++;
+	}
 	//62, 20
-	while(1) {
-		i = rand() % 60; j = 0;
-		move_enemy(i, j, ene);
-		ene++; ene_num++;
-		if(Enemy[ene].y == 21) ene_num--;
-		if(ene > 9) ene = 0;
+	while(!q.empty()) {
+		args.i = rand() % 60; args.j = 0;
+		if((clock()-start)/CLOCKS_PER_SEC > 2) {
+			args.ene = q.front();
+			q.pop();
+			Enemy[ene].exist == true;
+			if(pthread_create(&thread_t, NULL, move_enemy,(void*)&args)<0) {
+				perror("thread create error:");
+        		exit(0);
+			}
+			start = clock();
+		}
 	}
 	setColor(white, black);
 }
