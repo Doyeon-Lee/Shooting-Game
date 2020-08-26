@@ -1,6 +1,6 @@
 #include "enemy.h"
 #include "myplane.h"
-
+extern pthread_mutex_t mutex_value;
 queue<int> q;
 
 class Enemy {
@@ -10,75 +10,90 @@ public:
 	string view = "<->";
 }Enemy[MAXENEMY];
 
-void* move_enemy(void* ene) {
-	int e = *(int *)ene;
+struct arg_struct {
+	int i;
+	int j;
+	int ene;
+};
+
+void* move_enemy(void* arguments) {
+	arg_struct *args = (arg_struct *)arguments;
+	int i = args->i;
+	int j = args->j;
+	int e = args->ene;
+	clock_t start;
 	
-	while(Enemy[e].x < 60 && Enemy[e].y < 18 && Enemy[e].exist == true) {
-		gotoxy(Enemy[e].x, Enemy[e].y);
+	while(i < 60 && j < 18 && Enemy[e].exist == true) {	
+		pthread_mutex_lock(&mutex_value);
+	
+		Enemy[e].x = i; Enemy[e].y = j;
+		gotoxy(i, j);
 		setColor(red,black);
 		cout << Enemy[e].view;
-		sleep(1);
-		gotoxy(Enemy[e].x, Enemy[e].y);
+		sleep(1);		
+		gotoxy(i, j);
 		cout << "   ";
-		Enemy[e].y++;
+		j++;
+		start = clock();
+		
+		pthread_mutex_unlock(&mutex_value);
 	}
-	
 	if(Enemy[e].y == 18 || Enemy[e].exist == false)
 		q.push(e);
+
+	return (void*)0;
 }
 
 void enemy() {
-	int i, j, ene, status;
+	int i, j, ene;
+	bool bfound;
+	arg_struct args;
 	pthread_t thread_t;
 	Myplane me(30,17);
 	clock_t start = clock();
 	srand(time(0));
 	
 	ene = 0;
-	while(ene < 10) {
+	while(ene < 11) {
 		q.push(ene);
 		ene++;
 	}
 	//62, 20
 	while(!q.empty()) {
-		if(kbhit()) {	//move my character
-			int k = keyControl();
-	        switch(k){
-	            case UP:{
-	                move(&me.x, &me.y, 0, -1);
-	                break;
-	            }
-	            case DOWN:{
-	                move(&me.x, &me.y, 0, 1);
-	                break;
-	            }
-	            case LEFT:{
-	                move(&me.x, &me.y, -1, 0);
-	                break;
-	            }
-	            case RIGHT:{
-	                move(&me.x, &me.y, 1, 0);
-	                break;
-	            }
-	            case SUBMIT:{
-	                setColor(white, black);
-	
-	            }
-	        }
-        }
+		int k = keyControl();
+        switch(k){
+            case UP:{
+                move(&me.x, &me.y, 0, -1);
+                break;
+            }
+            case DOWN:{
+                move(&me.x, &me.y, 0, 1);
+                break;
+            }
+            case LEFT:{
+                move(&me.x, &me.y, -1, 0);
+                break;
+            }
+            case RIGHT:{
+                move(&me.x, &me.y, 1, 0);
+                break;
+            }
+            case SUBMIT:{
+                setColor(white, black);
 
-		if((clock()-start)/CLOCKS_PER_SEC > 2) {	//make enemies
-			ene = q.front(); q.pop();
-			Enemy[ene].x = rand() % 60;
-			Enemy[ene].y = 0;
-			Enemy[ene].exist = true;
-			if(pthread_create(&thread_t, NULL, move_enemy,(void*)&ene)<0) {
+            }
+        }
+		args.i = rand() % 60; args.j = 0;
+		if((clock()-start)/CLOCKS_PER_SEC > 2) {
+			args.ene = q.front();
+			q.pop();
+			Enemy[ene].exist == true;
+			if(pthread_create(&thread_t, NULL, move_enemy,(void*)&args)<0) {
 				perror("thread create error:");
         		exit(0);
 			}
 			start = clock();
 		}
 	}
-	pthread_join(thread_t, (void **)&status);
 	setColor(white, black);
 }

@@ -2,6 +2,7 @@
 #include <ctime>
 #include <pthread.h>
 #include <unistd.h>
+#include <time.h>
 #include <queue>
 #include "main.h"
 #include "util.h"

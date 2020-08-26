@@ -15,9 +15,8 @@ void init(){
 	//PlaySoundA (TEXT("background_music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); 
 }
 
-
 void gotoxy(int x, int y){
-	if(x < 0 || y < 0) cerr << "Out of Screen!";
+	//if(x < 0 || y < 0) cerr << "Out of Screen!";
 	
 	HANDLE consolehandle = GetStdHandle(STD_OUTPUT_HANDLE); //�ܼ� �ڵ� ��������
 	COORD pos;
@@ -33,5 +32,16 @@ void setColor(int forground, int background){
 	SetConsoleTextAttribute(consoleHandle, code);
 }
 
+void clearScreen(){
+    HANDLE hOut;
+    COORD Position;
+    DWORD Written;
 
+    hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    Position.X = 0;
+    Position.Y = 0;
+    FillConsoleOutputCharacter(hOut,' ', COLS*ROWS, Position, &Written);
+
+    SetConsoleCursorPosition(hOut, Position);
+}

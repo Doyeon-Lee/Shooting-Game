@@ -4,7 +4,7 @@
 #define SCREEN_SIZE
 
 #define COLS 62
-#define LINES 20
+#define ROWS 20
 #endif
 
 #ifndef __COLOR_LIST__
@@ -22,3 +22,4 @@ enum{
 void init();
 void gotoxy(int, int);
 void setColor(int, int);
+void clearScreen();

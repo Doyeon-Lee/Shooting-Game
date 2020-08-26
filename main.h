@@ -40,6 +40,12 @@ using namespace std;
 #include <time.h>
 #endif
 
+#ifndef __PTHREAD_H__
+#define __PTHREAD_H__
+
+#include <pthread.h>
+#endif
+
 #ifndef __STDLIB_H__
 #define __STDLIB_H__
 
