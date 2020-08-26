@@ -8,10 +8,10 @@ void init(){
 
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO ConsoleCursor;
-	ConsoleCursor.bVisible = 0; //false ï¿½Ç´ï¿½ 0: ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	ConsoleCursor.bVisible = 0; //false ï¿½Ç´ï¿½ 0: ï¿½ï¿½ï¿½ï¿½ï¿? 
 	ConsoleCursor.dwSize = 1;
 	SetConsoleCursorInfo(consoleHandle, &ConsoleCursor);
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿? 
 	//PlaySoundA (TEXT("background_music.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP); 
 }
 

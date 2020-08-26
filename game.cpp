@@ -10,7 +10,7 @@ extern pthread_mutex_t mutex_value;
 // <<<->>> boss
 
 void gameStart(){
-	system("cls");
+	clearScreen();
 	score();
 	myplane();
 	enemy();

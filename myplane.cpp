@@ -26,8 +26,7 @@ void move(int *x, int *y, int m, int n){
 }
 
 void myplane(){
-    //system("cls");
-
+    //clearScreen();
     gotoxy(30,17);
     setColor(yellow,black);
     cout << "[-]";

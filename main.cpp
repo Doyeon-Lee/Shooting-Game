@@ -18,7 +18,7 @@ int main() {
 		}else if(menuCode == 3){
 			return 0; //exit
 		}
-		system("cls");
+		clearScreen();
 	}
 	return 0;
 }
