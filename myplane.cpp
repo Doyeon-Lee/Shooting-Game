@@ -5,14 +5,12 @@
 extern pthread_mutex_t mutex_value;
 
 Myplane::Myplane(int a, int b){
-        x = a;
-        y = b;
+    x = a;
+    y = b;
 }
 
-void move(int *x, int *y, int m, int n){
-    if((*x+m) >= 0 && (*x+m) < 59 && (*y+n) >= 0 && (*y+n) < 18){
-    	pthread_mutex_lock(&mutex_value);
-    	
+void plane_move(int *x, int *y, int m, int n){
+    if((*x+m) >= 0 && (*x+m) < ROWS-2 && (*y+n) >= 0 && (*y+n) < COLS-2){    	
 		gotoxy(*x,*y);
         cout << "   ";
         setColor(yellow, black);
@@ -20,14 +18,12 @@ void move(int *x, int *y, int m, int n){
         cout << "[-]";
         *x += m;
         *y += n;
-		
-		pthread_mutex_unlock(&mutex_value);
 	 }
 }
 
-void myplane(){
-    //clearScreen();
-    gotoxy(30,17);
+void initPlane(class Myplane &p){
+    //p = Myplane(30, 17);
+    gotoxy(p.x, p.y);
     setColor(yellow,black);
     cout << "[-]";
     setColor(white,black);

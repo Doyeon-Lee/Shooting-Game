@@ -3,8 +3,8 @@
 #ifndef SCREEN_SIZE
 #define SCREEN_SIZE
 
-#define COLS 62
-#define ROWS 20
+#define ROWS 62
+#define COLS 20
 #endif
 
 #ifndef __COLOR_LIST__

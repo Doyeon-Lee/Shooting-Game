@@ -8,6 +8,6 @@ public:
     Myplane(int a, int b);
 };
 
-void move(int*, int*, int, int);
+void plane_move(int*, int*, int, int);
 
-void myplane();
+void initPlane(class Myplane&);

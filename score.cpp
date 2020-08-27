@@ -18,12 +18,6 @@ void score(){
 //enemy, myplane practice
 /*
 void myplane(){	
-	system("cls");
-	Player p(15,15);
-	gotoxy(p.x, p.y);
-	setColor(yellow, black);
-	cout << "@";
-	
 	int player_move_key;
 	while(1){
 		player_move_key = keyControl();

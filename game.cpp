@@ -2,7 +2,7 @@
 #include "game.h"
 #include "util.h"
 #include "score.h"
-#include "enemy.h"
+#include "enemy2.h"
 #include "myplane.h"
 extern pthread_mutex_t mutex_value;
 // [-] player
@@ -12,7 +12,6 @@ extern pthread_mutex_t mutex_value;
 void gameStart(){
 	clearScreen();
 	score();
-	myplane();
 	enemy();
 }
 
