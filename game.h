@@ -1,5 +1,3 @@
-#include "main.h"
-
 #ifndef KEY_CODE
 #define KEY_CODE
 
@@ -9,7 +7,7 @@
 #define LEFT 2
 #define RIGHT 3
 #define SUBMIT 4	//spacebar
-
+#define ESC 5
 #endif
 
 void gameStart();

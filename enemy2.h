@@ -1,13 +1,16 @@
 #include <string>
 #include <random>
 #include <chrono>
-#include <queue>
+#include <deque>
+#include <vector>
 #include "main.h"
 #include "util.h"
+#include "game.h"
 
 #define MAXENEMY 10
-#define MAXBALL 20 
+#define MAXBALL 20
 
 void enemy();
-void eraseEnemy(class Enemy&);
-void drawEnemy(class Enemy&);
+void eraseEnemy(class EnemyClass&);
+void drawEnemy(class EnemyClass&);
+void eraseEnemy();

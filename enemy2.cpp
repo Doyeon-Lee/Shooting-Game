@@ -3,9 +3,8 @@
 #include "util.h"
 #include "myplane.h"
 #include "game.h"
-queue<int> q;
 
-class Enemy {
+class EnemyClass {
 public:
 	bool exist = false;
     int idx;
@@ -14,13 +13,16 @@ public:
     time_t print_time;
 }Enemy[MAXENEMY];
 
-void eraseEnemy(class Enemy &e){
+queue<int> q;
+deque<pair<int, int>> bulletPos;
+
+void eraseEnemy(class EnemyClass &e){
     gotoxy(e.x, e.y);
     cout << "   ";
     e.y++;
 }
 
-void drawEnemy(class Enemy &e){
+void drawEnemy(class EnemyClass &e){
     if(e.x < 0 || e.x >= ROWS-3 || e.y < 0 || e.y >= COLS-3){
         q.push(e.idx);
         e.exist = false;
@@ -30,6 +32,7 @@ void drawEnemy(class Enemy &e){
     gotoxy(e.x, e.y);
     setColor(red,black);
     cout << e.view;
+    setColor(white, black);
 }
 
 bool collision(class Myplane &p){
@@ -46,6 +49,48 @@ bool collision(class Myplane &p){
     //player collide with enemy's attack
     /*code here*/
 }
+
+void shootBullet(class Myplane &p){
+    //shoot bullet in front of the plane & push the position in the vector
+    int bx = p.x+1;
+    int by = p.y-1;
+    bulletPos.push_back(make_pair(bx,by)); //front middle of the plane
+    gotoxy(bx, by);
+    cout << "*";
+}
+
+bool checkBullet(int &i){
+    int bx = bulletPos[i].first;
+    int by = bulletPos[i].second;
+
+    if(bx < 0 || bx > ROWS || by < 0 || by > COLS){
+        auto iter = bulletPos.begin() + i;
+        bulletPos.erase(iter);
+        return false;
+    }
+    return true;
+}
+
+void moveBullet(){
+    if(bulletPos.empty()) return;
+
+    for(int i = 0;i < bulletPos.size();i++){
+        gotoxy(bulletPos[i].first, bulletPos[i].second);
+        cout << " ";
+    }
+
+    for(int i = 0;i < bulletPos.size();i++)
+        bulletPos[i].second--;
+
+
+    for(int i = 0;i < bulletPos.size();i++){
+        if(checkBullet(i)){
+            gotoxy(bulletPos[i].first, bulletPos[i].second);
+            cout << "*";
+        }
+    }
+}
+
 
 void enemy(){
     for(int i = 0;i < MAXENEMY;i++) q.push(i);
@@ -78,6 +123,8 @@ void enemy(){
                 {plane_move(&p.x, &p.y, 0, 1);
                 break;}
             case SUBMIT:
+                {shootBullet(p); break;}
+            case ESC:
                 {setColor(white, black);
                 return;}
         }
@@ -89,6 +136,8 @@ void enemy(){
 
         cur_time = clock();
         if(cur_time - gen_time < 1000) continue;
+
+        moveBullet();
 
         if(!q.empty()){
             int idx = q.front();
@@ -110,4 +159,13 @@ void enemy(){
         //} //if¹® close
     }
     setColor(white,black);
+}
+
+void eraseEnemy(){
+    for(int i = 0;i < MAXENEMY;i++){
+        if(Enemy[i].exist){
+            Enemy[i].exist = false;
+            q.push(Enemy[i].idx);
+        }
+    }
 }

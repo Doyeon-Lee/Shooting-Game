@@ -1,8 +1,8 @@
 #include "main.h"
+#include "enemy2.h"
 #include "game.h"
 #include "util.h"
 #include "score.h"
-#include "enemy2.h"
 #include "myplane.h"
 extern pthread_mutex_t mutex_value;
 // [-] player
@@ -16,6 +16,9 @@ void gameStart(){
 }
 
 void gameover(){
+	//when you start the game again, the enemies have to be reset
+	eraseEnemy();
+
 	gotoxy(ROWS/2-3, COLS/2-3);
 	setColor(yellow, black);
 	cout << "Game Over!!";
@@ -70,6 +73,7 @@ int keyControl() {
 		else if (temp == 75) return LEFT;
 		else if (temp == 77) return RIGHT;
 		else if (temp == 80) return DOWN;
+		else if (temp == 27) return ESC;
 		else if (temp == ' ') return SUBMIT;
 	}
 	return -1;
