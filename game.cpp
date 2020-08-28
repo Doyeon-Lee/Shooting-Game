@@ -15,6 +15,14 @@ void gameStart(){
 	enemy();
 }
 
+void gameover(){
+	gotoxy(ROWS/2-3, COLS/2-3);
+	setColor(yellow, black);
+	cout << "Game Over!!";
+	Sleep(2000);
+	setColor(white, black);
+}
+
 void printHelpPage(int &cur_page, int &total_page){
 	clearScreen();
 	cout << "\n\n\t\t\t" << cur_page << "/" << total_page << "\n\n\n";

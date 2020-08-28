@@ -4,7 +4,6 @@
 #include "myplane.h"
 #include "game.h"
 queue<int> q;
-mutex mtx;
 
 class Enemy {
 public:
@@ -31,6 +30,21 @@ void drawEnemy(class Enemy &e){
     gotoxy(e.x, e.y);
     setColor(red,black);
     cout << e.view;
+}
+
+bool collision(class Myplane &p){
+    int px = p.x;
+    int py = p.y;
+
+    //player collide with enemy
+    for(int i = 0;i < MAXENEMY;i++){
+        if(Enemy[i].y == py){
+            if(abs(Enemy[i].x-px) < 3) return true;
+        }
+    }
+    return false;
+    //player collide with enemy's attack
+    /*code here*/
 }
 
 void enemy(){
@@ -66,6 +80,11 @@ void enemy(){
             case SUBMIT:
                 {setColor(white, black);
                 return;}
+        }
+
+        if(collision(p)){
+            gameover();
+            break;
         }
 
         cur_time = clock();
