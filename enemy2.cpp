@@ -41,7 +41,7 @@ bool collision(class Myplane &p){
 
     //player collide with enemy
     for(int i = 0;i < MAXENEMY;i++){
-        if(Enemy[i].y == py){
+        if(Enemy[i].y == py && Enemy[i].exist){
             if(abs(Enemy[i].x-px) < 3) return true;
         }
     }
@@ -89,6 +89,10 @@ void moveBullet(){
             cout << "*";
         }
     }
+}
+
+void eraseBullet(){
+    bulletPos.clear();
 }
 
 

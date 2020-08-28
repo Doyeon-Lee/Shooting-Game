@@ -18,8 +18,9 @@ void gameStart(){
 void gameover(){
 	//when you start the game again, the enemies have to be reset
 	eraseEnemy();
+	eraseBullet();
 
-	gotoxy(ROWS/2-3, COLS/2-3);
+	gotoxy(ROWS/2-4, COLS/2-2);
 	setColor(yellow, black);
 	cout << "Game Over!!";
 	Sleep(2000);
@@ -38,6 +39,10 @@ void printHelpPage(int &cur_page, int &total_page){
 			cout << "second help page\n";
 			break;
 		}
+		case 3:{
+			cout << "third help page\n";
+			break;
+		}
 	}
 
 	while(1){
@@ -51,6 +56,7 @@ void printHelpPage(int &cur_page, int &total_page){
 				if(cur_page <= total_page) printHelpPage(++cur_page, total_page);
 				break;
 			}
+			case ESC: return;
 		}
 		if(cur_page > total_page) break;
 	}
@@ -58,7 +64,7 @@ void printHelpPage(int &cur_page, int &total_page){
 
 void help(){
 	int cur_page = 1;
-	int total_page = 2;
+	int total_page = 3;
 	int page_control = 0;
 	printHelpPage(cur_page, total_page);
 }

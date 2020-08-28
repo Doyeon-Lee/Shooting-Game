@@ -19,6 +19,7 @@ void plane_move(int *x, int *y, int m, int n){
         *x += m;
         *y += n;
 	 }
+     setColor(white, black);
 }
 
 void initPlane(class Myplane &p){
