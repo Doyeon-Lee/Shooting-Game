@@ -9,6 +9,7 @@ mutex mtx;
 class Enemy {
 public:
 	bool exist = false;
+    int idx;
 	int x, y;
 	string view = "<->";
     time_t print_time;
@@ -21,7 +22,11 @@ void eraseEnemy(class Enemy &e){
 }
 
 void drawEnemy(class Enemy &e){
-    if(e.x < 0 || e.x >= ROWS-3 || e.y < 0 || e.y >= COLS-3) return;
+    if(e.x < 0 || e.x >= ROWS-3 || e.y < 0 || e.y >= COLS-3){
+        q.push(e.idx);
+        e.exist = false;
+        return;
+    }
 
     gotoxy(e.x, e.y);
     setColor(red,black);
@@ -29,7 +34,6 @@ void drawEnemy(class Enemy &e){
 }
 
 void enemy(){
-    queue<int> q;
     for(int i = 0;i < MAXENEMY;i++) q.push(i);
 
     //make random_device to get seed value
@@ -70,6 +74,7 @@ void enemy(){
         if(!q.empty()){
             int idx = q.front();
             q.pop();
+            Enemy[idx].idx = idx;
             Enemy[idx].exist = true;
             Enemy[idx].x = dis(gen)/3;
             Enemy[idx].y = -1;
