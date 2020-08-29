@@ -10,15 +10,14 @@ extern pthread_mutex_t mutex_value;
 // <<<->>> boss
 
 void gameStart(){
-	clearScreen();
+	resetGame();
 	score();
 	enemy();
 }
 
 void gameover(){
 	//when you start the game again, the enemies have to be reset
-	eraseAllEnemy();
-	eraseBullet();
+	resetGame();
 
 	gotoxy(ROWS/2-4, COLS/2-2);
 	setColor(yellow, black);

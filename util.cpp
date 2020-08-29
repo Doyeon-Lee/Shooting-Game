@@ -42,7 +42,7 @@ void clearScreen(){
 
     Position.X = 0;
     Position.Y = 0;
-    FillConsoleOutputCharacter(hOut,' ', COLS*ROWS, Position, &Written);
+    FillConsoleOutputCharacter(hOut,' ', (COLS+1)*(ROWS+1), Position, &Written);
 
     SetConsoleCursorPosition(hOut, Position);
 }

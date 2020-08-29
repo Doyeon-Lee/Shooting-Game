@@ -15,3 +15,4 @@ void eraseEnemy(class EnemyClass&);
 void drawEnemy(class EnemyClass&);
 void eraseAllEnemy();
 void eraseBullet();
+void resetGame();

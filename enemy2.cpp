@@ -23,15 +23,25 @@ void eraseEnemy(int &i){
     q.push(i);
 }
 
-void eraseAllEnemy(){
+void resetGame(){
+    clearScreen();
+
+    int idx;
+    //erase all enemy
     for(int i = 0;i < MAXENEMY;i++){
-        if(Enemy[i].exist){
-            gotoxy(Enemy[i].x, Enemy[i].y);
-            cout << "   ";
+        if(Enemy[i].exist)
             Enemy[i].exist = false;
-            q.push(Enemy[i].idx);
-        }
     }
+    //init queue
+    while(!q.empty()) q.pop();
+
+    //erase all bullet
+    for(int i = 0;i < bulletPos.size();i++){
+        gotoxy(bulletPos[i].first, bulletPos[i].second);
+        cout << " ";
+    }
+
+    bulletPos.clear();
 }
 
 void drawEnemy(class EnemyClass &e){
@@ -115,13 +125,12 @@ void moveBullet(){
     }
 }
 
-void eraseBullet(){
-    for(int i = 0;i < bulletPos.size();i++){
-        gotoxy(bulletPos[i].first, bulletPos[i].second);
-        cout << " ";
-    }
-
-    bulletPos.clear();
+void eraseBullet(int &i){
+    gotoxy(bulletPos[i].first, bulletPos[i].second);
+    cout << " ";
+    auto iter = bulletPos.begin();
+    iter += i;
+    bulletPos.erase(iter);
 }
 
 void enemy(){
@@ -158,8 +167,6 @@ void enemy(){
             case SUBMIT:
                 {shootBullet(p); break;}
             case ESC:{
-                eraseAllEnemy();
-                eraseBullet();
                 clearScreen();
                 setColor(white, black);
                 return;}
@@ -180,11 +187,7 @@ void enemy(){
             int en; //enemy_number
             if(bulletHit(i, en)){
                 //erase bullet
-                gotoxy(bulletPos[i].first, bulletPos[i].second);
-                cout << " ";
-                auto iter = bulletPos.begin();
-                iter += i;
-                bulletPos.erase(iter);
+                eraseBullet(i);
 
                 //erase enemy
                   eraseEnemy(en);
@@ -194,8 +197,7 @@ void enemy(){
         if(cur_time - enemy_time < 1000) continue;
 
         if(!q.empty()){
-            int idx = q.front();
-            q.pop();
+            int idx = q.front(); q.pop();
             Enemy[idx].idx = idx;
             Enemy[idx].exist = true;
             Enemy[idx].x = dis(gen)/3;
