@@ -206,8 +206,10 @@ void enemy(){
 
         for(int i = 0;i < MAXENEMY;i++){
             if(Enemy[i].exist == true){
-                gotoxy(Enemy[i].x, Enemy[i].y);
-                cout << "   ";
+                if(Enemy[i].y != p.y || Enemy[i].x != p.x){
+                    gotoxy(Enemy[i].x, Enemy[i].y);
+                    cout << "   ";
+                }
                 Enemy[i].y++;
                 drawEnemy(Enemy[i]);
             }
