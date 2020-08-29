@@ -13,5 +13,5 @@
 void enemy();
 void eraseEnemy(class EnemyClass&);
 void drawEnemy(class EnemyClass&);
-void eraseEnemy();
+void eraseAllEnemy();
 void eraseBullet();

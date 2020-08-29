@@ -5,6 +5,7 @@
 //���� ȭ�� ���� �� �⺻ �Լ��� 
 void init(){
 	system("mode con: cols=62 lines=20 | title shooting game");
+	setCurrentConsoleFontEx();
 
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO ConsoleCursor;
@@ -44,4 +45,16 @@ void clearScreen(){
     FillConsoleOutputCharacter(hOut,' ', COLS*ROWS, Position, &Written);
 
     SetConsoleCursorPosition(hOut, Position);
+}
+
+void setCurrentConsoleFontEx(){
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;                   // Width of each character in the font
+	cfi.dwFontSize.Y = 25;                  // Height
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL;
+	std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 }

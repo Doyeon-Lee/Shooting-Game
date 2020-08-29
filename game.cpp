@@ -17,7 +17,7 @@ void gameStart(){
 
 void gameover(){
 	//when you start the game again, the enemies have to be reset
-	eraseEnemy();
+	eraseAllEnemy();
 	eraseBullet();
 
 	gotoxy(ROWS/2-4, COLS/2-2);

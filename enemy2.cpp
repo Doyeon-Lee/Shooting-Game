@@ -16,10 +16,20 @@ public:
 queue<int> q;
 deque<pair<int, int>> bulletPos;
 
-void eraseEnemy(class EnemyClass &e){
-    gotoxy(e.x, e.y);
+void eraseEnemy(int &i){
+    gotoxy(Enemy[i].x, Enemy[i].y);
     cout << "   ";
-    e.y++;
+    Enemy[i].exist = false;
+    q.push(i);
+}
+
+void eraseAllEnemy(){
+    for(int i = 0;i < MAXENEMY;i++){
+        if(Enemy[i].exist){
+            Enemy[i].exist = false;
+            q.push(Enemy[i].idx);
+        }
+    }
 }
 
 void drawEnemy(class EnemyClass &e){
@@ -31,7 +41,7 @@ void drawEnemy(class EnemyClass &e){
 
     gotoxy(e.x, e.y);
     setColor(red,black);
-    cout << e.view;
+    cout << "\e[1m" << e.view;
     setColor(white, black);
 }
 
@@ -59,6 +69,7 @@ void shootBullet(class Myplane &p){
     cout << "*";
 }
 
+//is the bullet in the screen?
 bool checkBullet(int &i){
     int bx = bulletPos[i].first;
     int by = bulletPos[i].second;
@@ -69,6 +80,18 @@ bool checkBullet(int &i){
         return false;
     }
     return true;
+}
+
+bool bulletHit(int &i, int &en){
+    for(int j = 0;j < MAXENEMY;j++){
+        int bx = bulletPos[i].first; int by = bulletPos[i].second;
+        int ex = Enemy[j].x; int ey = Enemy[j].y;
+        if(Enemy[j].exist && by == ey && bx >= ex && bx <= ex+3){
+            en = j;
+            return true;
+        }
+    }
+    return false;
 }
 
 void moveBullet(){
@@ -82,7 +105,6 @@ void moveBullet(){
     for(int i = 0;i < bulletPos.size();i++)
         bulletPos[i].second--;
 
-
     for(int i = 0;i < bulletPos.size();i++){
         if(checkBullet(i)){
             gotoxy(bulletPos[i].first, bulletPos[i].second);
@@ -95,7 +117,6 @@ void eraseBullet(){
     bulletPos.clear();
 }
 
-
 void enemy(){
     for(int i = 0;i < MAXENEMY;i++) q.push(i);
 
@@ -107,7 +128,8 @@ void enemy(){
     uniform_int_distribution<int> dis(0,(ROWS-3)*3);
 
     clock_t cur_time;
-    clock_t gen_time = clock();
+    clock_t enemy_time = clock();
+    clock_t bullet_time = clock();
     Myplane p(30, 17);
     initPlane(p);
 
@@ -139,9 +161,27 @@ void enemy(){
         }
 
         cur_time = clock();
-        if(cur_time - gen_time < 1000) continue;
+        if(cur_time - bullet_time >= 400){
+            moveBullet();
+            bullet_time = clock();
+        }
 
-        moveBullet();
+        for(int i = 0;i < bulletPos.size();i++){
+            int en; //enemy_number
+            if(bulletHit(i, en)){
+                //erase bullet
+                gotoxy(bulletPos[i].first, bulletPos[i].second);
+                cout << " ";
+                auto iter = bulletPos.begin();
+                iter += i;
+                bulletPos.erase(iter);
+
+                //erase enemy
+                  eraseEnemy(en);
+            }
+        }
+
+        if(cur_time - enemy_time < 1000) continue;
 
         if(!q.empty()){
             int idx = q.front();
@@ -152,24 +192,14 @@ void enemy(){
             Enemy[idx].y = -1;
         }
 
-        //if(cur_time - gen_time > 500){
-            for(int i = 0;i < MAXENEMY;i++){
-                if(Enemy[i].exist == true){
-                    eraseEnemy(Enemy[i]);
-                    drawEnemy(Enemy[i]);
-                }
+        for(int i = 0;i < MAXENEMY;i++){
+            if(Enemy[i].exist == true){
+                gotoxy(Enemy[i].x, Enemy[i].y);
+                cout << "   ";
+                Enemy[i].y++;
+                drawEnemy(Enemy[i]);
             }
-            gen_time = clock();
-        //} //if¹® close
-    }
-    setColor(white,black);
-}
-
-void eraseEnemy(){
-    for(int i = 0;i < MAXENEMY;i++){
-        if(Enemy[i].exist){
-            Enemy[i].exist = false;
-            q.push(Enemy[i].idx);
         }
+        enemy_time = clock();
     }
 }

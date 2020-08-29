@@ -7,6 +7,12 @@
 #define COLS 20
 #endif
 
+#ifndef __CWCHAR__
+#define __CWCHAR__
+
+#include <cwchar>
+#endif
+
 #ifndef __COLOR_LIST__
 #define __COLOR_LIST__
 
@@ -23,3 +29,4 @@ void init();
 void gotoxy(int, int);
 void setColor(int, int);
 void clearScreen();
+void setCurrentConsoleFontEx();
