@@ -8,10 +8,10 @@ void score(){
 	int life = 3;
 	int skill = 3;
 	//62, 20
-	gotoxy(0, 18);
-	for(int i = 0;i < 62;i++)
+	gotoxy(0, COLS-2);
+	for(int i = 0;i <= ROWS;i++)
 		cout << "=";
-	gotoxy(0, 19);
+	gotoxy(0, COLS-1);
 	cout << "LIFE: " << life << "\t\t\tSCORE: " << score << "\t\tSKILL: " << skill;
 }
 	

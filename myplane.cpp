@@ -10,7 +10,7 @@ Myplane::Myplane(int a, int b){
 }
 
 void plane_move(int *x, int *y, int m, int n){
-    if((*x+m) >= 0 && (*x+m) < ROWS-2 && (*y+n) >= 0 && (*y+n) < COLS-2){    	
+    if((*x+m) >= 0 && (*x+m) <= ROWS-2 && (*y+n) >= 0 && (*y+n) < COLS-2){    	
 		gotoxy(*x,*y);
         cout << "   ";
         setColor(yellow, black);

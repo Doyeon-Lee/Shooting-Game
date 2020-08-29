@@ -4,7 +4,7 @@
 
 //���� ȭ�� ���� �� �⺻ �Լ��� 
 void init(){
-	system("mode con: cols=62 lines=20 | title shooting game");
+	system("mode con: cols=63 lines=20 | title shooting game");
 	setCurrentConsoleFontEx();
 
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);

@@ -137,7 +137,7 @@ void enemy(){
     clock_t cur_time;
     clock_t enemy_time = clock();
     clock_t bullet_time = clock();
-    Myplane p(ROWS/2-3, COLS-3);
+    Myplane p(ROWS/2-1, COLS-3);
     initPlane(p);
 
     while(1){
@@ -160,6 +160,7 @@ void enemy(){
             case ESC:{
                 eraseAllEnemy();
                 eraseBullet();
+                clearScreen();
                 setColor(white, black);
                 return;}
         }
