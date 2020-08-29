@@ -26,6 +26,8 @@ void eraseEnemy(int &i){
 void eraseAllEnemy(){
     for(int i = 0;i < MAXENEMY;i++){
         if(Enemy[i].exist){
+            gotoxy(Enemy[i].x, Enemy[i].y);
+            cout << "   ";
             Enemy[i].exist = false;
             q.push(Enemy[i].idx);
         }
@@ -33,7 +35,7 @@ void eraseAllEnemy(){
 }
 
 void drawEnemy(class EnemyClass &e){
-    if(e.x < 0 || e.x >= ROWS-3 || e.y < 0 || e.y >= COLS-3){
+    if(e.x < 0 || e.x >= ROWS-3 || e.y < 0 || e.y >= COLS-2){
         q.push(e.idx);
         e.exist = false;
         return;
@@ -114,6 +116,11 @@ void moveBullet(){
 }
 
 void eraseBullet(){
+    for(int i = 0;i < bulletPos.size();i++){
+        gotoxy(bulletPos[i].first, bulletPos[i].second);
+        cout << " ";
+    }
+
     bulletPos.clear();
 }
 
@@ -130,17 +137,17 @@ void enemy(){
     clock_t cur_time;
     clock_t enemy_time = clock();
     clock_t bullet_time = clock();
-    Myplane p(30, 17);
+    Myplane p(ROWS/2-3, COLS-3);
     initPlane(p);
 
     while(1){
         int plane_move_key = keyControl();
         switch(plane_move_key){
             case LEFT:
-                {plane_move(&p.x, &p.y, -1, 0);
+                {plane_move(&p.x, &p.y, -3, 0);
                 break;}
             case RIGHT:
-                {plane_move(&p.x, &p.y, 1, 0);
+                {plane_move(&p.x, &p.y, 3, 0);
                 break;}
             case UP:
                 {plane_move(&p.x, &p.y, 0, -1);
@@ -150,8 +157,10 @@ void enemy(){
                 break;}
             case SUBMIT:
                 {shootBullet(p); break;}
-            case ESC:
-                {setColor(white, black);
+            case ESC:{
+                eraseAllEnemy();
+                eraseBullet();
+                setColor(white, black);
                 return;}
         }
 
