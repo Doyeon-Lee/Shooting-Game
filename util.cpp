@@ -53,7 +53,7 @@ void blinkScreen(){
 	setColor(white, white);
 	for(int i = 0;i < (COLS+1)*(ROWS+1);i++)
 		cout << "1";
-	Sleep(200);
+	Sleep(150);
 
 	setColor(black, black);
 	for(int i = 0;i < (COLS+1)*(ROWS+1);i++)

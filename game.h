@@ -18,3 +18,5 @@ void titleDraw();
 int menuDraw();
 void infoDraw();
 void help();
+void updateHighScore();
+void printHighScore();

@@ -44,4 +44,5 @@ void plusScore();
 bool lifeLeft();
 void minusLife();
 bool useSkill();
+int getCurScore();
 //void myplane();

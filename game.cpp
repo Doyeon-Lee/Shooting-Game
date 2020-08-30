@@ -9,6 +9,22 @@ extern pthread_mutex_t mutex_value;
 // <-> enemy 
 // <<<->>> boss
 
+int high_score = 0;
+void updateHighScore(){
+	int cur_score = getCurScore();
+	if(cur_score > high_score) high_score = cur_score;
+}
+
+void printHighScore(){
+	clearScreen();
+	gotoxy(ROWS/2-13, COLS/2);
+	cout << "HIGH SCORE = " << high_score;
+	gotoxy(ROWS/2-13, COLS/2+2);
+	cout << "Press any key to return to menu.";
+
+	getch();
+}
+
 void gameStart(){
 	resetGame();
 	printScoreBoard();

@@ -191,6 +191,7 @@ void enemy(){
             }
             else{
                 gameover();
+                updateHighScore();
                 break;
             }
         }

@@ -54,6 +54,10 @@ bool useSkill(){
 	return true;
 }
 
+int getCurScore(){
+	return score;
+}
+
 //enemy, myplane practice
 /*
 void myplane(){	

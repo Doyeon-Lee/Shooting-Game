@@ -9,14 +9,14 @@ int main() {
 
 	while(1){
 		titleDraw();
-		initScoreBoard();
 		int menuCode = menuDraw();
 		if(menuCode == 0){ //���� ����B
+			initScoreBoard();
 			gameStart();
 		} else if(menuCode == 1){
 			help(); // help
 		} else if(menuCode == 2) {
-			//highScore(); // highscore
+			printHighScore(); // highscore
 		}else if(menuCode == 3){
 			return 0; //exit
 		}
