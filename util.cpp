@@ -1,6 +1,8 @@
 #include "main.h"
-//#include "game.h"
+#include "game.h"
 #include "util.h"
+#include "enemy2.h"
+#include "score.h"
 
 //���� ȭ�� ���� �� �⺻ �Լ��� 
 void init(){
@@ -47,7 +49,19 @@ void clearScreen(){
     SetConsoleCursorPosition(hOut, Position);
 }
 
+void blinkScreen(){
+	setColor(white, white);
+	for(int i = 0;i < (COLS+1)*(ROWS+1);i++)
+		cout << "1";
+	Sleep(200);
+
+	setColor(black, black);
+	for(int i = 0;i < (COLS+1)*(ROWS+1);i++)
+		cout << "1";
+}
+
 void setCurrentConsoleFontEx(){
+	cout << "\e[1m";
 	CONSOLE_FONT_INFOEX cfi;
 	cfi.cbSize = sizeof(cfi);
 	cfi.nFont = 0;

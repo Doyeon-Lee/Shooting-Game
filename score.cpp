@@ -2,6 +2,7 @@
 #include "util.h"
 #include "game.h"
 #include "score.h"
+#include "enemy2.h"
 #define SCORE_X 0
 #define LIFE_X 20
 #define SKILL_X 40
@@ -9,8 +10,14 @@
 
 int score, life, skill;
 
-void initScoreBoard(){	
-	score = 0; life = 3; skill = 3;
+void initScoreBoard(){
+	score = 0;
+	life = 3;
+	skill = 3;
+}
+
+void printScoreBoard(){	
+	setColor(white, black);
 	//62, 20
 	gotoxy(0, COLS-2);
 	for(int i = 0;i <= ROWS;i++)
@@ -40,6 +47,13 @@ void minusLife(){
 	cout << "LIFE: " << life;	
 }
 	
+bool useSkill(){
+	if(skill == 0) return false;
+	skill--;
+	blinkScreen();
+	return true;
+}
+
 //enemy, myplane practice
 /*
 void myplane(){	

@@ -1,6 +1,7 @@
 #include "main.h"
 #include "game.h"
 #include "util.h"
+#include "score.h"
 pthread_mutex_t mutex_value;
 
 int main() {
@@ -8,6 +9,7 @@ int main() {
 
 	while(1){
 		titleDraw();
+		initScoreBoard();
 		int menuCode = menuDraw();
 		if(menuCode == 0){ //���� ����B
 			gameStart();

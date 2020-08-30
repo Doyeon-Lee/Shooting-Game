@@ -30,3 +30,4 @@ void gotoxy(int, int);
 void setColor(int, int);
 void clearScreen();
 void setCurrentConsoleFontEx();
+void blinkScreen();

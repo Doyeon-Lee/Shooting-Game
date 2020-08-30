@@ -8,6 +8,7 @@
 #define RIGHT 3
 #define SUBMIT 4	//spacebar
 #define ESC 5
+#define SKILL 6
 #endif
 
 void gameStart();

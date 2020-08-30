@@ -54,7 +54,7 @@ void drawEnemy(class EnemyClass &e){
 
     gotoxy(e.x, e.y);
     setColor(red,black);
-    cout << "\e[1m" << e.view;
+    cout << e.view;
     setColor(white, black);
 }
 
@@ -139,6 +139,7 @@ void eraseBullet(int &i){
 }
 
 void enemy(){
+    bool skillFlag = false;
     for(int i = 0;i < MAXENEMY;i++) q.push(i);
 
     //make random_device to get seed value
@@ -175,7 +176,10 @@ void enemy(){
                 clearScreen();
                 setColor(white, black);
                 return;}
-        }
+            case SKILL:
+                {if(useSkill()) skillFlag = true;
+                break;}
+        } if(skillFlag) break;
 
         int colEn; //enemy number that had collision
         if(collision(p, colEn)){
@@ -230,4 +234,5 @@ void enemy(){
         }
         enemy_time = clock();
     }
+    if(skillFlag) gameStart();
 }

@@ -39,8 +39,9 @@ private:
 };
 */
 void initScoreBoard();
+void printScoreBoard();
 void plusScore();
 bool lifeLeft();
 void minusLife();
-
+bool useSkill();
 //void myplane();

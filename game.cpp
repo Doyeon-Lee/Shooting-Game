@@ -11,7 +11,7 @@ extern pthread_mutex_t mutex_value;
 
 void gameStart(){
 	resetGame();
-	initScoreBoard();
+	printScoreBoard();
 	enemy();
 }
 
@@ -28,26 +28,39 @@ void gameover(){
 
 void printKeyHelp(){
 	gotoxy(0, COLS-1);
-	cout << "LEFT: ¡ç  RIGHT: ¡æ  UP: ¡è  DOWN: ¡é\n" << "SELECT: SPACEBAR  ESC: EXIT";
+	cout << "LEFT: ¡ç  RIGHT: ¡æ  UP: ¡è  DOWN: ¡é\n" << "SELECT: SPACEBAR  EXIT: ESC";
 }
 
 void printHelpPage(int &cur_page, int &total_page){
 	clearScreen();
 	printKeyHelp();
-	gotoxy(0,0);
-	cout << "\n\n\t\t\t" << cur_page << "/" << total_page << "\n\n\n";
+	gotoxy(ROWS/2-2, 2);
+	cout << cur_page << "/" << total_page << "\n\n\n";
 
 	switch(cur_page){
 		case 1:{
-			cout << "first help page\n";
+			//first help page
+			cout << "This game is \"space shooter\", which you can attack the flying \nenemies. ";
+			cout << "There is a scoreboard at the bottom of the screen.\n";
+			cout << "You can shoot the bullets toward the enemies by pressing the\nEnter key. ";
+			cout << "The score will increase if the bullet hits an enemy.";
 			break;
 		}
 		case 2:{
-			cout << "second help page\n";
+			//second help page
+			cout << "If you collide with an enemy, the life will be decreased and\nthe location "
+				 << "of the player plane will move to the initial\nposition. ";
+			cout << "You can use a skill three times by pressing 's' key.\n";
+			cout << "This skill will erase all the enemies on the screen after a\nshort blink. ";
+			cout << "The highscore will be storaged while the console\nscreen is turned on.";
 			break;
 		}
 		case 3:{
-			cout << "third help page\n";
+			//third help page
+			cout << "Programmers: Lee Doyeon, º¹¿µºó, Á¤¼ÒÀ±\n\n";
+			cout << "If you find any kind of bugs, please contact me here.\n";
+			cout << ">> dyl1229@naver.com\n\n";
+			cout << "Enjoy playing!";
 			break;
 		}
 	}
@@ -87,6 +100,7 @@ int keyControl() {
 		else if (temp == 77) return RIGHT;
 		else if (temp == 80) return DOWN;
 		else if (temp == 27) return ESC;
+		else if (temp == 's') return SKILL;
 		else if (temp == ' ') return SUBMIT;
 	}
 	return -1;
