@@ -11,7 +11,7 @@ extern pthread_mutex_t mutex_value;
 
 void gameStart(){
 	resetGame();
-	score();
+	initScoreBoard();
 	enemy();
 }
 

@@ -3,6 +3,7 @@
 #include "util.h"
 #include "myplane.h"
 #include "game.h"
+#include "score.h"
 
 class EnemyClass {
 public:
@@ -57,14 +58,17 @@ void drawEnemy(class EnemyClass &e){
     setColor(white, black);
 }
 
-bool collision(class Myplane &p){
+bool collision(class Myplane &p, int &en){
     int px = p.x;
     int py = p.y;
 
     //player collide with enemy
     for(int i = 0;i < MAXENEMY;i++){
         if(Enemy[i].y == py && Enemy[i].exist){
-            if(abs(Enemy[i].x-px) < 3) return true;
+            if(abs(Enemy[i].x-px) < 3){
+                en = i;
+                return true;
+            }
         }
     }
     return false;
@@ -100,6 +104,7 @@ bool bulletHit(int &i, int &en){
         int ex = Enemy[j].x; int ey = Enemy[j].y;
         if(Enemy[j].exist && by == ey && bx >= ex && bx <= ex+3){
             en = j;
+            plusScore();
             return true;
         }
     }
@@ -146,7 +151,7 @@ void enemy(){
     clock_t cur_time;
     clock_t enemy_time = clock();
     clock_t bullet_time = clock();
-    Myplane p(ROWS/2-1, COLS-3);
+    Myplane p;
     initPlane(p);
 
     while(1){
@@ -172,9 +177,18 @@ void enemy(){
                 return;}
         }
 
-        if(collision(p)){
-            gameover();
-            break;
+        int colEn; //enemy number that had collision
+        if(collision(p, colEn)){
+            if(lifeLeft()){
+                eraseEnemy(colEn);
+                minusLife();
+                initPlane(p);
+                Sleep(1000);
+            }
+            else{
+                gameover();
+                break;
+            }
         }
 
         cur_time = clock();

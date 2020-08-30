@@ -2,17 +2,42 @@
 #include "util.h"
 #include "game.h"
 #include "score.h"
+#define SCORE_X 0
+#define LIFE_X 20
+#define SKILL_X 40
+#define SCORE_BOARD_Y COLS-1
 
-void score(){	
-	int score = 0;
-	int life = 3;
-	int skill = 3;
+int score, life, skill;
+
+void initScoreBoard(){	
+	score = 0; life = 3; skill = 3;
 	//62, 20
 	gotoxy(0, COLS-2);
 	for(int i = 0;i <= ROWS;i++)
 		cout << "=";
-	gotoxy(0, COLS-1);
-	cout << "LIFE: " << life << "\t\t\tSCORE: " << score << "\t\tSKILL: " << skill;
+	gotoxy(SCORE_X, SCORE_BOARD_Y);
+	cout << "SCORE: " << score;
+	gotoxy(LIFE_X, SCORE_BOARD_Y);
+	cout << "LIFE: " << life;
+	gotoxy(SKILL_X, SCORE_BOARD_Y);
+	cout << "SKILL: " << skill;
+}
+
+void plusScore(){
+	score++;
+	gotoxy(SCORE_X, SCORE_BOARD_Y);
+	cout << "SCORE: " << score;
+}
+
+bool lifeLeft(){
+	if(life > 0) return true;
+	else return false;
+}
+
+void minusLife(){
+	life--;
+	gotoxy(LIFE_X, SCORE_BOARD_Y);
+	cout << "LIFE: " << life;	
 }
 	
 //enemy, myplane practice

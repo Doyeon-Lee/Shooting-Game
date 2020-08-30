@@ -38,5 +38,9 @@ private:
 	}
 };
 */
-void score();
+void initScoreBoard();
+void plusScore();
+bool lifeLeft();
+void minusLife();
+
 //void myplane();
