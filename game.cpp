@@ -26,9 +26,17 @@ void gameover(){
 	setColor(white, black);
 }
 
+void printKeyHelp(){
+	gotoxy(0, COLS-1);
+	cout << "LEFT: ก็  RIGHT: กๆ  UP: ก่  DOWN: ก้\n" << "SELECT: SPACEBAR  ESC: EXIT";
+}
+
 void printHelpPage(int &cur_page, int &total_page){
 	clearScreen();
+	printKeyHelp();
+	gotoxy(0,0);
 	cout << "\n\n\t\t\t" << cur_page << "/" << total_page << "\n\n\n";
+
 	switch(cur_page){
 		case 1:{
 			cout << "first help page\n";
@@ -92,6 +100,8 @@ void titleDraw() {
 	cout << "\t    ######  ######  #    #  #    #    ##  \n";
 	cout << "\t         #  #    #  #    #  #    #    ##  \n";
 	cout << "\t    ######  #    #  ######  ######    ##  \n";
+
+	printKeyHelp();
 }
 
 int menuDraw(){
